@@ -29,7 +29,7 @@ export const MainView = () => {
         image: "https://m.media-amazon.com/images/M/MV5BMTMxNTMwODM0NF5BMl5BanBnXkFtZTcwODAyMTk2Mw@@._V1_FMjpg_UX1000_.jpg",
         genre: ["Action", "Crime", "Drama"],
         director: "Cristopher Nolan" 
-
+        
     }
   ]);
 
