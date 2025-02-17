@@ -28,7 +28,6 @@ export const MainView = () => {
           return {
             id: movie.id,
             title: movie.title,
-            image: movie.image,
             description: movie.description,
             director: movie.director,
             genre: movie.Genre,

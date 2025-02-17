@@ -8,9 +8,6 @@ export const MovieView = ({ movie, onMovieClick }) => {
   return (
     <div>
       <div>
-        <img src={movie.image} alt={movie.title || "Movie image"} />
-      </div>
-      <div>
         <span>Title: </span>
         <span>{movie.title}</span>
       </div>
