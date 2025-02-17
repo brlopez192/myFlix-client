@@ -1,4 +1,6 @@
 import React from "react";
+import "./movie-view.scss";
+
 
 export const MovieView = ({ movie, onMovieClick }) => {
   if (!movie) {
@@ -23,7 +25,10 @@ export const MovieView = ({ movie, onMovieClick }) => {
         <span>Description: </span>
         <span>{movie.description}</span>
       </div>
-      <button onClick={onMovieClick}>Back</button>
+      <button onClick={onMovieClick}
+      className="back-button"
+      style={{cursor: "pointer"}}
+      >Back</button>
     </div>
   );
 };
