@@ -1,9 +1,7 @@
-import { createRoot } from 'react-dom/client';
-import { MainView } from './Components/MainView/main-view';
-
-// Import statement to indicate that you need to bundle `./index.scss`
-import "./index.scss";
-import React from 'react';
+import React from 'react'; // Ensure React is imported for JSX
+import { createRoot } from 'react-dom/client'; // Import ReactDOM for rendering
+import { MainView } from './Components/MainView/main-view'; // Import your main view
+import './index.scss'; // Import the SCSS styles
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
@@ -11,8 +9,8 @@ const MyFlixApplication = () => {
 };
 
 // Finds the root of your app
-const container = document.querySelector("#root");
-const root = createRoot(container);
+const container = document.querySelector("#root"); // Ensure this element exists in your HTML
+const root = createRoot(container); // Create root to use in rendering
 
 // Tells React to render your app in the root DOM element
 root.render(<MyFlixApplication />);
