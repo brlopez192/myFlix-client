@@ -18,26 +18,27 @@ export const MainView = () => {
     if (!token) {
       return;
     }
-
+  
     fetch("https://movieflixapp-88791d8c1b4d.herokuapp.com/movies", {
-      headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = movies.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
           return {
             id: movie.id,
             title: movie.title,
-            Image: movie.image,
+            image: movie.image,
             description: movie.description,
             director: movie.director,
-            Genre: movie.Genre,
+            genre: movie.Genre,
           };
         });
-
+  
         setMovies(moviesFromApi);
       });
-    }, [token]);
+  }, [token]);
+  
 
     if (!user) {
       return (
@@ -69,7 +70,7 @@ export const MainView = () => {
         <MovieCard
           key={movie.id}
           movie={movie}
-          onBookClick={(newSelectedMovie) => {
+          onMovieClick={(newSelectedMovie) => {
             selectedMovie(newSelectedMovie);
           }}
         />
