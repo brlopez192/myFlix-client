@@ -62,14 +62,15 @@ export const MainView = () => {
         <div>The list is empty!</div>
       ) : (
         <>
-          {movies.map((book) => (
-            <MovieCard
-              key={movie.id}
+          {movies.map((movie) => (
+            <Col className="mb-5" key={movie.id} md={3}>
+              <MovieCard
               movie={movie}
               onMovieClick={(newSelectedMovie) => {
                 selectedMovie(newSelectedMovie);
               }}
             />
+            </Col>
           ))}
         </>
       )}
