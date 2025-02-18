@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import { Button, Form } from "react-bootstrap";
+import PropTypes from 'prop-types';
+
 
 export const LoginView = ({onLoggedIn}) => {
     const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ export const LoginView = ({onLoggedIn}) => {
         const data = {
             Username: username,
             Password: password
-          };
+          }
       
           fetch("https://movieflixapp-88791d8c1b4d.herokuapp.com/login", {
             method: "POST",
@@ -31,10 +32,10 @@ export const LoginView = ({onLoggedIn}) => {
                 alert("No such user");
               }
             })
-            .catch((e) => {
+            .catch(() => {
               alert("Something went wrong");
             });
-        };
+        }
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formUsername">
@@ -62,4 +63,7 @@ export const LoginView = ({onLoggedIn}) => {
       </Button>
     </Form>
   );
+}
+LoginView.propTypes = {
+  onLoggedIn: PropTypes.func.isRequired
 };
