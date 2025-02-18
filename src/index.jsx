@@ -3,11 +3,14 @@ import { createRoot } from 'react-dom/client'; // Import ReactDOM for rendering
 import { MainView } from './Components/MainView/main-view'; // Import your main view
 import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
 import './index.scss'; // Import the SCSS styles
+import Container from 'react-bootstrap/Container'; // Import the Container component
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
   return (
-    <MainView />
+    <Container>
+      <MainView />
+    </Container>
   );
 };
 
