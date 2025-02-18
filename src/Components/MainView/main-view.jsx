@@ -5,10 +5,12 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../SignupView/signup-view";
 import { useEffect } from "react";
-import { Row } from "react-bootstrap";
+import { Nav, Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
+
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -44,6 +46,7 @@ export const MainView = () => {
   
 
   return (
+    NavigationBar,
     <BrowserRouter>
     <Row className="justify-content-md-center"> 
       <Routes>
