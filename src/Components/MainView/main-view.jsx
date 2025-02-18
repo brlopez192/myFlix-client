@@ -132,37 +132,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 };
-
-//       {!user ? (
-//         <Col md={5}>
-//           <LoginView onLoggedIn={(user) => setUser(user)} />
-//             or
-//             <SignupView />
-//         </Col>
-//       ) : selectedMovie ? (
-//         <Col md={8} style={{border:"1px solid black"}}>
-//           <MovieView
-//           style={{border:"1px solid green"}}
-//             movie={selectedMovie}
-//             onBackClick={() => setSelectedMovie(null)}
-//         />
-//         </Col>
-//       ) : movies.length === 0 ? (
-//         <div>The list is empty!</div>
-//       ) : (
-//         <>
-//           {movies.map((movie) => (
-//             <Col className="mb-5" key={movie.id} md={3}>
-//               <MovieCard
-//               movie={movie}
-//               onMovieClick={(newSelectedMovie) => {
-//                 selectedMovie(newSelectedMovie);
-//               }}
-//             />
-//             </Col>
-//           ))}
-//         </>
-//       )}
-//     </Row>
-// );
-// };
