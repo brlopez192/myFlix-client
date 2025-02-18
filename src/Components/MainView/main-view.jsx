@@ -8,6 +8,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../SignupView/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
+import { ProfileView } from "../profile-view/profile-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -28,7 +29,7 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => ({
-          id: movie._id, 
+          id: movie._id,
           title: movie.title,
           description: movie.description,
           director: movie.director,
@@ -48,7 +49,7 @@ export const MainView = () => {
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={handleLoggedOut} />
-      
+
       <Row className="justify-content-md-center">
         <Routes>
           <Route
@@ -70,13 +71,27 @@ export const MainView = () => {
                 <Navigate to="/" />
               ) : (
                 <Col md={5}>
-                  <LoginView onLoggedIn={(user, token) => {
-                    setUser(user);
-                    setToken(token);
-                    localStorage.setItem("user", JSON.stringify(user));
-                    localStorage.setItem("token", token);
-                  }} />
+                  <LoginView
+                    onLoggedIn={(user, token) => {
+                      setUser(user);
+                      setToken(token);
+                      localStorage.setItem("user", JSON.stringify(user));
+                      localStorage.setItem("token", token);
+                    }}
+                  />
                 </Col>
+              )
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              user ? (
+                <Col md={8}>
+                  <ProfileView />
+                </Col>
+              ) : (
+                <Navigate to="/login" replace />
               )
             }
           />
@@ -118,7 +133,6 @@ export const MainView = () => {
   );
 };
 
-
 //       {!user ? (
 //         <Col md={5}>
 //           <LoginView onLoggedIn={(user) => setUser(user)} />
@@ -127,10 +141,10 @@ export const MainView = () => {
 //         </Col>
 //       ) : selectedMovie ? (
 //         <Col md={8} style={{border:"1px solid black"}}>
-//           <MovieView 
+//           <MovieView
 //           style={{border:"1px solid green"}}
-//             movie={selectedMovie} 
-//             onBackClick={() => setSelectedMovie(null)} 
+//             movie={selectedMovie}
+//             onBackClick={() => setSelectedMovie(null)}
 //         />
 //         </Col>
 //       ) : movies.length === 0 ? (

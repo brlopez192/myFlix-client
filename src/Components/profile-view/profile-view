@@ -1,0 +1,76 @@
+import React, { useState, useEffect } from "react";
+import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
+
+export const ProfileView = () => {
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch user data after component mounts
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      // If no token, redirect to login page
+      setError("You need to log in to view your profile.");
+      setLoading(false);
+      return;
+    }
+
+    fetch("https://movieflixapp-88791d8c1b4d.herokuapp.com/users", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUserData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Error fetching user data.");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <Container>
+        <Row className="justify-content-center">
+          <Col md={3} className="text-center">
+            <Spinner animation="border" variant="primary" />
+            <p>Loading...</p>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container>
+        <Row className="justify-content-center">
+          <Col md={6}>
+            <Alert variant="danger">{error}</Alert>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+
+  return (
+    <Container>
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <h2>User Profile</h2>
+          <div>
+            <p><strong>Name: </strong>{userData.name}</p>
+            <p><strong>Email: </strong>{userData.email}</p>
+            <p><strong>Username: </strong>{userData.username}</p>
+            <p><strong>Joined on: </strong>{new Date(userData.createdAt).toLocaleDateString()}</p>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
