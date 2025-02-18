@@ -30,7 +30,7 @@ export const MainView = () => {
             title: movie.title,
             description: movie.description,
             director: movie.director,
-            genre: movie.Genre,
+            genre: movie.genre,
           };
         });
   
@@ -70,7 +70,7 @@ export const MainView = () => {
           key={movie.id}
           movie={movie}
           onMovieClick={(newSelectedMovie) => {
-            selectedMovie(newSelectedMovie);
+            setSelectedMovie(newSelectedMovie);
           }}
         />
       ))}
